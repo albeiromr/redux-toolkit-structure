@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import {
   decrement,
   increment,
   incrementByAmount,
-  incrementAsync,
   incrementIfOdd,
   selectCount,
-} from './counterSlice';
+} from '../../redux/slices/counterSlice';
+import { incrementAsync } from '../../redux/thunks/increment-async.thunk';
 import styles from './Counter.module.css';
 
 export function Counter() {
@@ -20,7 +20,9 @@ export function Counter() {
 
   return (
     <div>
+
       <div className={styles.row}>
+
         <button
           className={styles.button}
           aria-label="Decrement value"
@@ -28,7 +30,9 @@ export function Counter() {
         >
           -
         </button>
+
         <span className={styles.value}>{count}</span>
+
         <button
           className={styles.button}
           aria-label="Increment value"
@@ -36,32 +40,39 @@ export function Counter() {
         >
           +
         </button>
+
       </div>
+
       <div className={styles.row}>
+
         <input
           className={styles.textbox}
           aria-label="Set increment amount"
           value={incrementAmount}
           onChange={(e) => setIncrementAmount(e.target.value)}
         />
+
         <button
           className={styles.button}
-          onClick={() => dispatch(incrementByAmount(incrementValue))}
+          onClick={() => dispatch(incrementByAmount(incrementValue))} 
         >
           Add Amount
         </button>
+
         <button
           className={styles.asyncButton}
           onClick={() => dispatch(incrementAsync(incrementValue))}
         >
           Add Async
         </button>
+
         <button
           className={styles.button}
           onClick={() => dispatch(incrementIfOdd(incrementValue))}
         >
           Add If Odd
         </button>
+        
       </div>
     </div>
   );
