@@ -22,8 +22,8 @@ export const testSlice = createSlice({
     addProduct: (state) => {
       state.productsInCar += 1;
     },
-    removeProduct: (state) => {
-      state.productsInCar -= 1;
+    removeProduct: (state, action:PayloadAction<number>) => {
+      state.productsInCar -= action.payload;
     },
   },
   extraReducers: (builder) => {
