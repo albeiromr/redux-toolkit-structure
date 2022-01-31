@@ -35,9 +35,10 @@ export const testSlice = createSlice({
     .addCase(testAsyncThunk.pending, (state) => {
         state.todo.status = "loading";
     })
-    .addCase(testAsyncThunk.rejected, (state) => {
+    .addCase(testAsyncThunk.rejected, (state, action) => {
+        //state.todo.value = {};
         state.todo.status = "rejected";
-      });
+    });
   },
 });
 

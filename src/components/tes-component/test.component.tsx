@@ -33,7 +33,10 @@ const TestComponent = () => {
             <h2>Counter {productsInCar} </h2>
             <hr />
 
-            {todo.status === "loading" ? <h2>...LOADING</h2> : <h2>{todo.value.title}</h2>}
+            {todo.status === "loading" ? <h2>...LOADING</h2> : null}
+            {todo.status === "completed" ? <h2>{todo.value.title}</h2> : null}
+            {todo.status === "rejected" ? <h2>NO EXISTE</h2> : null}
+
             <input type="number" onChange={handleInputChange}/>
             <button onClick={handleButtonClick}>search todo</button>
         </div>
