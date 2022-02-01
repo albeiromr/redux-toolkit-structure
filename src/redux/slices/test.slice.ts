@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TestStateInterface } from "../interfaces/test-state.interface";
+import { getPhotoByIdThunk } from "../thunks/getPhotoByIdThunk";
 import { testAsyncThunk } from "../thunks/test-async.thunk";
 
 const initialState: TestStateInterface = {
@@ -13,6 +14,16 @@ const initialState: TestStateInterface = {
       completed: false,
     },
   },
+  photo: {
+    status: "loading",
+    value: {
+      albumId: null,
+      id: null,
+      title: "",
+      url: "",
+      thumbnailUrl: ""
+    }
+  }
 };
 
 export const testSlice = createSlice({
@@ -38,7 +49,18 @@ export const testSlice = createSlice({
     .addCase(testAsyncThunk.rejected, (state, action) => {
         //state.todo.value = {};
         state.todo.status = "rejected";
-    });
+    })
+    .addCase(getPhotoByIdThunk.fulfilled, (state, action) => {
+      state.photo.status = "completed";
+      state.photo.value = action.payload;
+    })
+    .addCase(getPhotoByIdThunk.pending, (state) => {
+      state.photo.status = "loading";
+    })
+    .addCase(getPhotoByIdThunk.rejected, (state, action) => {
+      //state.todo.value = {};
+      state.photo.status = "rejected";
+    })
   },
 });
 

@@ -1,27 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks"; 
 import { addProduct } from "../../redux/slices/test.slice";
+import { getPhotoByIdThunk } from "../../redux/thunks/getPhotoByIdThunk";
 import { testAsyncThunk } from "../../redux/thunks/test-async.thunk";
 
 
 const TestComponent = () => {
 
-    const [todoId, setTodoId] = useState(1);
+    const [id, setId] = useState(1);
     const {productsInCar} = useAppSelector(state => state.testState);
     const {todo} = useAppSelector(state => state.testState);
+    const {photo} = useAppSelector(state => state.testState);
 
     const dispatch = useAppDispatch();
 
     useEffect(()=>{
         console.log("escuchando subscripción");
-    },[todo]);
+    },[id]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setTodoId(Number(e.target.value));
+        setId(Number(e.target.value));
     }
 
     const handleButtonClick = () => {
-        dispatch(testAsyncThunk(todoId));
+        dispatch(testAsyncThunk(id));
+        dispatch(getPhotoByIdThunk(id));
         dispatch(addProduct());
     }
 
@@ -39,6 +42,13 @@ const TestComponent = () => {
 
             <input type="number" onChange={handleInputChange}/>
             <button onClick={handleButtonClick}>search todo</button>
+
+            <hr />
+
+            {photo.status === "loading" ? <h2>...LOADING</h2> : null}
+            {photo.status === "completed" ? <img src={photo.value.thumbnailUrl} alt="photo" /> : null}
+            {photo.status === "rejected" ? <h2>La foto no existe</h2> : null}
+
         </div>
     )
 }

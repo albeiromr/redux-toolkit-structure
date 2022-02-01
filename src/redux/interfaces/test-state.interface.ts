@@ -9,4 +9,14 @@ export interface TestStateInterface {
       completed: boolean;
     };
   };
+  photo: {
+    status:  "loading" | "completed" | "rejected"
+    value: {
+      albumId: number | null;
+      id: number | null;
+      title: string;
+      url: string;
+      thumbnailUrl: string;
+    }
+  }
 }
