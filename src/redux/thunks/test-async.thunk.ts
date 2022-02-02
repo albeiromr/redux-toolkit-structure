@@ -5,7 +5,7 @@ export const testAsyncThunk = createAsyncThunk(
   "test-state/fetchToDoById",
   async (id: number, { rejectWithValue }) => {
     const todo = await TodoService.getTodoById(id);
-    if (todo !== false) return todo;
-    else return rejectWithValue(new Error());
+    if (todo) return todo;
+    else return rejectWithValue(null);
   }
 );

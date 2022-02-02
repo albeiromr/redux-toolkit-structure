@@ -1,19 +1,16 @@
-export default class TodoService {
-    
-  public static async getTodoById(id: number) {
-    //no se hace con try catch por que la respuesta de esta api no trae headers,
-    //aunque halla o no halla error siempre retorna un objeto, por lo tanto el,
-    //catch no lo detecta
-    
-    //mas información en :
-    //https://redux-toolkit.js.org/api/createAsyncThunk#handling-thunk-errors
+import axios from "axios";
+import { TodoInterface } from "../redux/interfaces/test-state.interface";
 
-    const request = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`);
-    const data = await request.json();
-    if (Object.keys(data).length > 0) {
-      return data;
-    } else {
-      return false;
+export default class TodoService {
+
+  public static async getTodoById(id: number) {
+    try {
+      const todoRequest = await axios.get<TodoInterface>(`https://jsonplaceholder.typicode.com/todos/${id}`);
+      if (todoRequest.status === 200) return todoRequest.data;
+      else return null;
+    } catch(error){
+      if (axios.isAxiosError(error)) console.log(new Error(error.message));
+      else return null;
     }
   }
 }
