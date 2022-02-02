@@ -11,12 +11,14 @@ export interface TestStateInterface {
   };
   photo: {
     status:  "loading" | "completed" | "rejected"
-    value: {
-      albumId: number | null;
-      id: number | null;
-      title: string;
-      url: string;
-      thumbnailUrl: string;
-    }
+    value: PhotoInterface
   }
+}
+
+export interface PhotoInterface {
+  albumId: number | null;
+  id: number | null;
+  title: string;
+  url: string;
+  thumbnailUrl: string;
 }

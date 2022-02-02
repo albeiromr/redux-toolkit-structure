@@ -5,7 +5,7 @@ export const getPhotoByIdThunk = createAsyncThunk(
     "test-slice/getPhotoById",
     async (id: number,  {rejectWithValue}) => {
         const photo = await PhotoService.getPhotoById(id);
-        if(photo !== false) return photo;
-        else return rejectWithValue(new Error());
+        if(photo) return photo;
+        else return rejectWithValue(null);
     }
 )
