@@ -1,11 +1,11 @@
 import axios from "axios";
-import { TodoInterface } from "../redux/interfaces/test-state.interface";
+import { TodoModel } from "../redux/interfaces/test-state.interface";
 
 export default class TodoService {
 
   public static async getTodoById(id: number) {
     try {
-      const todoRequest = await axios.get<TodoInterface>(`https://jsonplaceholder.typicode.com/todos/${id}`);
+      const todoRequest = await axios.get<TodoModel>(`https://jsonplaceholder.typicode.com/todos/${id}`);
       if (todoRequest.status === 200) return todoRequest.data;
       else return null;
     } catch(error){

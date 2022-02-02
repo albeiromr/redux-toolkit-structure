@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { PhotoInterface } from '../redux/interfaces/test-state.interface';
+import { PhotoModel } from '../redux/interfaces/test-state.interface';
 
 export default class PhotoService {
 
   public static async getPhotoById(id: number) {
     try {
-      const photoRequest = await axios.get<PhotoInterface>(`https://jsonplaceholder.typicode.com/photos/${id}`);
+      const photoRequest = await axios.get<PhotoModel>(`https://jsonplaceholder.typicode.com/photos/${id}`);
       if ( photoRequest.status === 200 ) return photoRequest.data; 
       else return null;
     } catch (error) {

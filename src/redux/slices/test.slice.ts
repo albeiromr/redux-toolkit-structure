@@ -1,28 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TestStateInterface } from "../interfaces/test-state.interface";
+import { PhotoModel, TestStateModel, TodoModel } from "../interfaces/test-state.interface";
 import { getPhotoByIdThunk } from "../thunks/getPhotoByIdThunk";
 import { testAsyncThunk } from "../thunks/test-async.thunk";
 
-const initialState: TestStateInterface = {
+const initialState: TestStateModel = {
   productsInCar: 2,
   todo: {
     status: "loading",
-    value: {
-      userId: 0,
-      id: 0,
-      title: "",
-      completed: false,
-    },
+    value: new TodoModel()
   },
   photo: {
     status: "loading",
-    value: {
-      albumId: null,
-      id: null,
-      title: "",
-      url: "",
-      thumbnailUrl: ""
-    }
+    value: new PhotoModel()
   }
 };
 
@@ -47,7 +36,7 @@ export const testSlice = createSlice({
         state.todo.status = "loading";
     })
     .addCase(testAsyncThunk.rejected, (state, action) => {
-        //state.todo.value = {};
+        state.todo.value = new TodoModel();
         state.todo.status = "rejected";
     })
     .addCase(getPhotoByIdThunk.fulfilled, (state, action) => {
@@ -58,7 +47,7 @@ export const testSlice = createSlice({
       state.photo.status = "loading";
     })
     .addCase(getPhotoByIdThunk.rejected, (state, action) => {
-      //state.todo.value = {};
+      state.photo.value = new PhotoModel();
       state.photo.status = "rejected";
     })
   },

@@ -1,26 +1,26 @@
-export interface TestStateInterface {
+export interface TestStateModel {
   productsInCar: number;
   todo: {
     status:  "loading" | "completed" | "rejected";
-    value: TodoInterface;
+    value: TodoModel;
   };
   photo: {
     status:  "loading" | "completed" | "rejected";
-    value: PhotoInterface;
+    value: PhotoModel;
   }
 }
 
-export interface TodoInterface {
-  userId: number;
-  id: number;
-  title: string;
-  completed: boolean;
+export class TodoModel {
+  userId!: number;
+  id!: number;
+  title!: string;
+  completed!: boolean;
 }
 
-export interface PhotoInterface {
-  albumId: number | null;
-  id: number | null;
-  title: string;
-  url: string;
-  thumbnailUrl: string;
+export class PhotoModel {
+  albumId!: number;
+  id!: number;
+  title!: string;
+  url!: string;
+  thumbnailUrl!: string;
 }
