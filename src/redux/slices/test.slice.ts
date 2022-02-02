@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { PhotoModel, TestStateModel, TodoModel } from "../interfaces/test-state.interface";
+import { TestStateModel } from "../../models/test-state.model";
+import { TodoModel } from "../../models/todo.model";
+import { PhotoModel } from "../../models/photo.model";
 import { getPhotoByIdThunk } from "../thunks/getPhotoByIdThunk";
 import { testAsyncThunk } from "../thunks/test-async.thunk";
 

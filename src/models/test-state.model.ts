@@ -1,3 +1,7 @@
+import  {TodoModel} from "./todo.model";
+import { PhotoModel } from "./photo.model";
+
+
 export interface TestStateModel {
   productsInCar: number;
   todo: {
@@ -10,17 +14,5 @@ export interface TestStateModel {
   }
 }
 
-export class TodoModel {
-  userId!: number;
-  id!: number;
-  title!: string;
-  completed!: boolean;
-}
 
-export class PhotoModel {
-  albumId!: number;
-  id!: number;
-  title!: string;
-  url!: string;
-  thumbnailUrl!: string;
-}
+

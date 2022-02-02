@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { PhotoModel } from '../redux/interfaces/test-state.interface';
+import { PhotoModel } from '../models/photo.model';
 
 export default class PhotoService {
 

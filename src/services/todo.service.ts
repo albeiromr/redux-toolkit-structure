@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TodoModel } from "../redux/interfaces/test-state.interface";
+import { TodoModel } from "../models/todo.model";
 
 export default class TodoService {
 
