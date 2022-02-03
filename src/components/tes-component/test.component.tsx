@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { AsyncStatusEnum } from "../../enums/async-status.enum";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks"; 
-import { addProduct } from "../../redux/slices/test.slice";
+import { addProduct } from "../../redux/slices/app.slice";
 import { getPhotoByIdThunk } from "../../redux/thunks/getPhotoByIdThunk";
-import { testAsyncThunk } from "../../redux/thunks/test-async.thunk";
+import { getTodoByIdThunk } from "../../redux/thunks/getTodoByIdyThunk";
 
 
 const TestComponent = () => {
@@ -24,7 +24,7 @@ const TestComponent = () => {
     }
 
     const handleButtonClick = () => {
-        dispatch(testAsyncThunk(id));
+        dispatch(getTodoByIdThunk(id));
         dispatch(getPhotoByIdThunk(id));
         dispatch(addProduct());
     }

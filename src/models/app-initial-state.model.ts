@@ -3,7 +3,7 @@ import { PhotoModel } from "./photo.model";
 import { AsyncStatusEnum } from "../enums/async-status.enum";
 
 
-export interface TestStateModel {
+export interface AppInitialStateModel {
   productsInCar: number;
   todo: {
     status:  AsyncStatusEnum;

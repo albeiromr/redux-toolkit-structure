@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TestStateModel } from "../../models/test-state.model";
+import { AppInitialStateModel } from "../../models/app-initial-state.model";
 import { TodoModel } from "../../models/todo.model";
 import { PhotoModel } from "../../models/photo.model";
 import { getPhotoByIdThunk } from "../thunks/getPhotoByIdThunk";
-import { testAsyncThunk } from "../thunks/test-async.thunk";
+import { getTodoByIdThunk } from "../thunks/getTodoByIdyThunk";
 import { AsyncStatusEnum } from "../../enums/async-status.enum";
 
-const initialState: TestStateModel = {
+const AppInitialState: AppInitialStateModel = {
   productsInCar: 2,
   todo: {
     status: AsyncStatusEnum.idle,
@@ -18,9 +18,9 @@ const initialState: TestStateModel = {
   }
 };
 
-export const testSlice = createSlice({
-  name: "test-slice",
-  initialState: initialState,
+export const appSlice = createSlice({
+  name: "app-slice",
+  initialState: AppInitialState,
   reducers: {
     addProduct: (state) => {
       state.productsInCar += 1;
@@ -31,14 +31,14 @@ export const testSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    .addCase(testAsyncThunk.fulfilled, (state, action) => {
+    .addCase(getTodoByIdThunk.fulfilled, (state, action) => {
       state.todo.value = action.payload;
       state.todo.status = AsyncStatusEnum.completed;
     })
-    .addCase(testAsyncThunk.pending, (state) => {
+    .addCase(getTodoByIdThunk.pending, (state) => {
         state.todo.status = AsyncStatusEnum.loading;
     })
-    .addCase(testAsyncThunk.rejected, (state, action) => {
+    .addCase(getTodoByIdThunk.rejected, (state, action) => {
         state.todo.value = new TodoModel();
         state.todo.status = AsyncStatusEnum.rejected;
     })
@@ -56,6 +56,6 @@ export const testSlice = createSlice({
   },
 });
 
-export const { addProduct, removeProduct } = testSlice.actions;
+export const { addProduct, removeProduct } = appSlice.actions;
 
-export default testSlice.reducer;
+export default appSlice.reducer;
