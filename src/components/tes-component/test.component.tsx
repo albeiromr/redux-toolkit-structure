@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AsyncStatusEnum } from "../../enums/async-status.enum";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks"; 
-import { addProduct } from "../../redux/slices/app.slice";
+import { addCounter } from "../../redux/reducers/app.reducers";
 import { getPhotoByIdThunk } from "../../redux/thunks/getPhotoByIdThunk";
 import { getTodoByIdThunk } from "../../redux/thunks/getTodoByIdyThunk";
 
@@ -9,7 +9,7 @@ import { getTodoByIdThunk } from "../../redux/thunks/getTodoByIdyThunk";
 const TestComponent = () => {
 
     const [id, setId] = useState(1);
-    const {productsInCar} = useAppSelector(state => state.testState);
+    const {counter} = useAppSelector(state => state.testState);
     const {todo} = useAppSelector(state => state.testState);
     const {photo} = useAppSelector(state => state.testState);
 
@@ -26,7 +26,7 @@ const TestComponent = () => {
     const handleButtonClick = () => {
         dispatch(getTodoByIdThunk(id));
         dispatch(getPhotoByIdThunk(id));
-        dispatch(addProduct());
+        dispatch(addCounter());
     }
 
     return (
@@ -34,7 +34,7 @@ const TestComponent = () => {
             <h1>componente de prueba</h1>
             <hr />
 
-            <h2>Counter {productsInCar} </h2>
+            <h2>Counter {counter} </h2>
             <hr />
 
             {todo.status === AsyncStatusEnum.idle && <h2>Por favor busca un post</h2>}

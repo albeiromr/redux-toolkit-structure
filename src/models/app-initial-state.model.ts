@@ -4,7 +4,7 @@ import { AsyncStatusEnum } from "../enums/async-status.enum";
 
 
 export interface AppInitialStateModel {
-  productsInCar: number;
+  counter: number;
   todo: {
     status:  AsyncStatusEnum;
     value: TodoModel;

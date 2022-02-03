@@ -7,7 +7,7 @@ import { getTodoByIdThunk } from "../thunks/getTodoByIdyThunk";
 import { AsyncStatusEnum } from "../../enums/async-status.enum";
 
 const AppInitialState: AppInitialStateModel = {
-  productsInCar: 2,
+  counter: 2,
   todo: {
     status: AsyncStatusEnum.idle,
     value: new TodoModel()
@@ -18,15 +18,15 @@ const AppInitialState: AppInitialStateModel = {
   }
 };
 
-export const appSlice = createSlice({
-  name: "app-slice",
+export const appReducer = createSlice({
+  name: "app-reducer",
   initialState: AppInitialState,
   reducers: {
-    addProduct: (state) => {
-      state.productsInCar += 1;
+    addCounter: (state) => {
+      state.counter += 1;
     },
-    removeProduct: (state, action:PayloadAction<number>) => {
-      state.productsInCar -= action.payload;
+    restCounter: (state, action:PayloadAction<number>) => {
+      state.counter -= action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -56,6 +56,6 @@ export const appSlice = createSlice({
   },
 });
 
-export const { addProduct, removeProduct } = appSlice.actions;
+export const { addCounter, restCounter } = appReducer.actions;
 
-export default appSlice.reducer;
+export default appReducer.reducer;
