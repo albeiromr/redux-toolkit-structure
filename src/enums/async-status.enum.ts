@@ -1,6 +1,6 @@
 export enum AsyncStatusEnum {
-    "idle",
-    "loading",
-    "completed",
-    "rejected"
+    idle = "idle",
+    loading = "loading",
+    completed = "completed",
+    rejected = "rejected"
 }
