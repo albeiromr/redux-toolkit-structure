@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { AsyncStatusEnum } from "../../enums/async-status.enum";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks"; 
 import { addProduct } from "../../redux/slices/test.slice";
 import { getPhotoByIdThunk } from "../../redux/thunks/getPhotoByIdThunk";
@@ -36,18 +37,20 @@ const TestComponent = () => {
             <h2>Counter {productsInCar} </h2>
             <hr />
 
-            {todo.status === "loading" ? <h2>...LOADING</h2> : null}
-            {todo.status === "completed" ? <h2>{todo.value.title}</h2> : null}
-            {todo.status === "rejected" ? <h2>NO EXISTE</h2> : null}
+            {todo.status === AsyncStatusEnum.idle && <h2>Por favor busca un post</h2>}
+            {todo.status === AsyncStatusEnum.loading && <h2>...LOADING</h2>}
+            {todo.status === AsyncStatusEnum.completed && <h2>{todo.value.title}</h2>}
+            {todo.status === AsyncStatusEnum.rejected && <h2>el post no existe</h2>}
 
             <input type="number" onChange={handleInputChange}/>
             <button onClick={handleButtonClick}>search todo</button>
 
             <hr />
 
-            {photo.status === "loading" ? <h2>...LOADING</h2> : null}
-            {photo.status === "completed" ? <img src={photo.value.thumbnailUrl} alt="photo" /> : null}
-            {photo.status === "rejected" ? <h2>La foto no existe</h2> : null}
+            {photo.status === AsyncStatusEnum.idle && <h2>Por favor busca una foto</h2>}
+            {photo.status === AsyncStatusEnum.loading && <h2>...LOADING</h2>}
+            {photo.status === AsyncStatusEnum.completed && <img src={photo.value.thumbnailUrl} alt="photo" />}
+            {photo.status === AsyncStatusEnum.rejected && <h2>La foto no existe</h2>}
 
         </div>
     )

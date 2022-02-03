@@ -4,15 +4,16 @@ import { TodoModel } from "../../models/todo.model";
 import { PhotoModel } from "../../models/photo.model";
 import { getPhotoByIdThunk } from "../thunks/getPhotoByIdThunk";
 import { testAsyncThunk } from "../thunks/test-async.thunk";
+import { AsyncStatusEnum } from "../../enums/async-status.enum";
 
 const initialState: TestStateModel = {
   productsInCar: 2,
   todo: {
-    status: "loading",
+    status: AsyncStatusEnum.idle,
     value: new TodoModel()
   },
   photo: {
-    status: "loading",
+    status: AsyncStatusEnum.idle,
     value: new PhotoModel()
   }
 };
@@ -32,25 +33,25 @@ export const testSlice = createSlice({
     builder
     .addCase(testAsyncThunk.fulfilled, (state, action) => {
       state.todo.value = action.payload;
-      state.todo.status = "completed";
+      state.todo.status = AsyncStatusEnum.completed;
     })
     .addCase(testAsyncThunk.pending, (state) => {
-        state.todo.status = "loading";
+        state.todo.status = AsyncStatusEnum.loading;
     })
     .addCase(testAsyncThunk.rejected, (state, action) => {
         state.todo.value = new TodoModel();
-        state.todo.status = "rejected";
+        state.todo.status = AsyncStatusEnum.rejected;
     })
     .addCase(getPhotoByIdThunk.fulfilled, (state, action) => {
-      state.photo.status = "completed";
+      state.photo.status = AsyncStatusEnum.completed;
       state.photo.value = action.payload;
     })
     .addCase(getPhotoByIdThunk.pending, (state) => {
-      state.photo.status = "loading";
+      state.photo.status = AsyncStatusEnum.loading;
     })
     .addCase(getPhotoByIdThunk.rejected, (state, action) => {
       state.photo.value = new PhotoModel();
-      state.photo.status = "rejected";
+      state.photo.status = AsyncStatusEnum.rejected;
     })
   },
 });

@@ -1,15 +1,16 @@
 import  {TodoModel} from "./todo.model";
 import { PhotoModel } from "./photo.model";
+import { AsyncStatusEnum } from "../enums/async-status.enum";
 
 
 export interface TestStateModel {
   productsInCar: number;
   todo: {
-    status:  "loading" | "completed" | "rejected";
+    status:  AsyncStatusEnum;
     value: TodoModel;
   };
   photo: {
-    status:  "loading" | "completed" | "rejected";
+    status:  AsyncStatusEnum;
     value: PhotoModel;
   }
 }
