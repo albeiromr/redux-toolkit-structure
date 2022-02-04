@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { AsyncStatusEnum } from "../../enums/async-status.enum";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks"; 
-import { addCounter } from "../../redux/reducers/app.reducers";
-import { getPhotoByIdThunk } from "../../redux/thunks/getPhotoByIdThunk";
-import { getTodoByIdThunk } from "../../redux/thunks/getTodoByIdyThunk";
+import { addCounter } from "../../redux/counter/counter.reducer";
+import { getPhotoByIdThunk } from "../../redux/photo/thunks/getPhotoByIdThunk";
+import { getTodoByIdThunk } from "../../redux/todo/thunks/getTodoByIdyThunk";
 
 
 const TestComponent = () => {
 
     const [id, setId] = useState(1);
-    const {counter} = useAppSelector(state => state.testState);
-    const {todo} = useAppSelector(state => state.testState);
-    const {photo} = useAppSelector(state => state.testState);
+    const {counter} = useAppSelector(state => state.counterReducer);
+    const {todo} = useAppSelector(state => state.todoReducer);
+    const {photo} = useAppSelector(state => state.photoReducer);
 
     const dispatch = useAppDispatch();
 

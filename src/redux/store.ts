@@ -1,9 +1,14 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import appReducer from './reducers/app.reducers';
+import photoReducer from './photo/photo.reducer';
+import appReducer from './counter/counter.reducer';
+import todoReducer from './todo/todo.reducer';
+import counterReducer from './counter/counter.reducer';
 
 export const store = configureStore({
   reducer: {
-    testState: appReducer,
+    counterReducer: counterReducer,
+    todoReducer: todoReducer,
+    photoReducer: photoReducer
   }
 });
 
