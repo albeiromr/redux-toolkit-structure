@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { ElementRef, useEffect, useRef } from 'react'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import "./counter.component.scss"
 import { addCounter, restCounter } from '../../redux/counter/counter.reducer'
+import useDidUpdate from '../../hooks/component-did-update.hook'
 
 const CounterComponent = () => {
 
@@ -15,6 +16,25 @@ const CounterComponent = () => {
     const handleRestClick = () => {
         dispatch(restCounter(1));
     }
+
+    //Practicando ciclo de vida --------------------------------------------
+    //----------------------------------------------------------------------
+
+    useDidUpdate(() => {
+        console.log("me ejecuto solo cuando el counter cambia, he ignoro el primer renderizado del componente");
+    }, [counter]);
+
+    useEffect(() => {
+      console.log("me ejecuto solo cuando el componente se monta por primera vez");
+
+      return () => {
+        console.log("me ejecuto cuando el componente se desmonta");
+      };
+    }, []);
+
+    //Fin de la practica del ciclo de vida -------------------------------------
+    //--------------------------------------------------------------------------
+    
 
     return(
         <div className='counter'>
