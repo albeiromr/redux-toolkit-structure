@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppInitialStateModel } from "../../models/app-initial-state.model";
-import { TodoModel } from "../../models/todo.model";
-import { PhotoModel } from "../../models/photo.model";
+import { AppInitialStateModel } from "../../Interfaces/app-initial-state.model";
+import { ITodo } from "../../Interfaces/todo.interface";
+import { IPhoto } from "../../Interfaces/photo.interface";
 import { getPhotoByIdThunk } from "../thunks/getPhotoByIdThunk";
 import { getTodoByIdThunk } from "../thunks/getTodoByIdyThunk";
 import { AsyncStatusEnum } from "../../enums/async-status.enum";
@@ -10,11 +10,11 @@ const AppInitialState: AppInitialStateModel = {
   counter: 2,
   todo: {
     status: AsyncStatusEnum.idle,
-    value: new TodoModel()
+    value: {} as ITodo
   },
   photo: {
     status: AsyncStatusEnum.idle,
-    value: new PhotoModel()
+    value: {} as IPhoto
   }
 };
 
@@ -39,7 +39,7 @@ export const appReducer = createSlice({
         state.todo.status = AsyncStatusEnum.loading;
     })
     .addCase(getTodoByIdThunk.rejected, (state, action) => {
-        state.todo.value = new TodoModel();
+        state.todo.value = {} as ITodo;
         state.todo.status = AsyncStatusEnum.rejected;
     })
     .addCase(getPhotoByIdThunk.fulfilled, (state, action) => {
@@ -50,7 +50,7 @@ export const appReducer = createSlice({
       state.photo.status = AsyncStatusEnum.loading;
     })
     .addCase(getPhotoByIdThunk.rejected, (state, action) => {
-      state.photo.value = new PhotoModel();
+      state.photo.value = {} as IPhoto;
       state.photo.status = AsyncStatusEnum.rejected;
     })
   },

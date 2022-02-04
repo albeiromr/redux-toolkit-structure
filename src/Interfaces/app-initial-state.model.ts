@@ -1,5 +1,5 @@
-import  {TodoModel} from "./todo.model";
-import { PhotoModel } from "./photo.model";
+import  {ITodo} from "./todo.interface";
+import { IPhoto } from "./photo.interface";
 import { AsyncStatusEnum } from "../enums/async-status.enum";
 
 
@@ -7,11 +7,11 @@ export interface AppInitialStateModel {
   counter: number;
   todo: {
     status:  AsyncStatusEnum;
-    value: TodoModel;
+    value: ITodo;
   };
   photo: {
     status:  AsyncStatusEnum;
-    value: PhotoModel;
+    value: IPhoto;
   }
 }
 
