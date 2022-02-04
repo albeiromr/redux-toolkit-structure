@@ -7,6 +7,10 @@
   box-shadow: 5px 5px 5px #565656;
   padding: 15px;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 
   &__title {
     margin: 0;
@@ -60,8 +64,8 @@
   }
 
   &__status-title {
-      color: #565656;
-      margin: 30px auto;
-      text-align: center;
+    color: #565656;
+    margin: 30px auto;
+    text-align: center;
   }
 }
